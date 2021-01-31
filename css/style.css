@@ -1,0 +1,61 @@
+*{
+    padding:0;
+	margin:0;
+}
+body{
+	background-image: url('../slike/ozadje.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#title{
+	margin-top:20px;
+	display:flex;
+	justify-content:center;
+	min-height:30px;
+}
+
+
+
+h2{
+	position:relative;
+	margin:0;
+	font-size:4em;
+	font-weight:400px;
+	color:#43D469;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: black;
+}
+
+
+
+
+
+#polje{
+	width:500px;
+	height:500px;
+	border:5px solid #34495E;
+	margin:0 auto;
+	margin-top:100px;
+	background-color:#F2D60E;
+}
+
+#timer{
+	background-color:white;
+	width:100px;
+	margin-left:20%;
+	line-height:20px;
+	font-size:20px;
+	color:black;
+	margin-top:-300px;
+	
+	
+}
+
+#tocke{margin-left:40%;
+}
+#score{	text-align:center; 
+}
+
+
+

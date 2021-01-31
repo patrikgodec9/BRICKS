@@ -1,0 +1,37 @@
+<html>
+<head>
+ <meta charset="UTF-8">
+	<title>THE BRICKS</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="application/javascript" src="js/bricks.js"></script>
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+	<script src="js/jQuery.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+	
+</head>
+<body onLoad="drawIt()">
+        <div id="title" onClick="drawIt()">
+			<a id="demo" onClick="drawIt()" class="gumbText"></a>
+           <h2> THE BRICKS</h2>
+		</div>
+		
+		
+			
+			<div id="polje" >
+				<canvas id="canvas" width="500" height="500"></canvas>	
+			</div>
+		
+		
+		<div id="timer">
+			<div id="score">
+				<a class="score">POINTS:</a>
+			</div>
+			
+			<div id="points">
+				<a><mark id="tocke">0</mark></a>
+				<p>Time: <mark id="cas">00:00</mark></p>
+			</div>
+		</div>
+		
+</body>
+</html>
