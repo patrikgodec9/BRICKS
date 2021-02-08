@@ -21,8 +21,21 @@ function drawIt(){
     var f=1;		
     var tocke = 0;
     var start=true;
-
-    
+	var oblak = new Image();
+	oblak.src = "slike/brick1.jpg";
+	oblak.src = "slike/brick2.jpg";
+	
+    function init() {
+			canvas=document.getElementById('canvas');
+			ctx = $('#canvas')[0].getContext("2d");
+			WIDTH = $("#canvas").width();
+      HEIGHT = $("#canvas").height();
+		sekunde = 0;
+      izpisTimer = "00:00";
+      intTimer = setInterval(timer, 1000);
+      return setInterval(draw, 10);
+    }
+	
     function onKeyDown(evt){
 			if (evt.keyCode == 39){
 				rightDown = true;
@@ -43,12 +56,12 @@ function drawIt(){
 
     function init_mouse() {
       canvasMinX = $("canvas").offset().left;
-      canvasMaxX = canvasMinX + WIDTH;
+      canvasMaxX = canvasMinX + WIDTH-39;
   }
     
   function onMouseMove(evt) {
-  if (evt.pageX > canvasMinX+95 && evt.pageX < canvasMaxX) {
-    paddlex = evt.pageX - canvasMinX-95;
+  if (evt.pageX > canvasMinX+35 && evt.pageX < canvasMaxX) {
+    paddlex = evt.pageX - canvasMinX-40;
   }
 }
   $(document).keydown(onKeyDown);
@@ -60,7 +73,7 @@ function drawIt(){
     function initbricks() { 
 			vrstice = 6,stolpci = 4;
 			BrickW = (WIDTH/stolpci) - 1;
-			BrickH = 25;
+			BrickH = 30;
 			PADDING = 1;
       bricks = new Array(vrstice);
 			for (i=0; i < vrstice; i++) {
@@ -72,16 +85,7 @@ function drawIt(){
     }	
 
 
-    function init() {
-			canvas=document.getElementById('canvas');
-			ctx = $('#canvas')[0].getContext("2d");
-			WIDTH = $("#canvas").width();
-      HEIGHT = $("#canvas").height();
-		sekunde = 0;
-      izpisTimer = "00:00";
-      intTimer = setInterval(timer, 1000);
-      return setInterval(draw, 10);
-    }
+    
 
     function timer(){
       if(start==true){
@@ -101,7 +105,7 @@ function drawIt(){
 
     
     function draw() {
-			ctx.clearRect(0,0,500,500);
+			ctx.clearRect(0,0,600,500);
 			ctx.beginPath();
 			ctx.arc(x, y, 10, 0, Math.PI*2, true);
 			ctx.closePath();
@@ -113,10 +117,9 @@ function drawIt(){
       for (i=0; i < vrstice; i++){
 				for (j=0; j < stolpci; j++){
 					if (bricks[i][j] == 1) {
-						ctx.fillStyle="#DAF7A6 ";
-						rect((j * (BrickW + PADDING)) + PADDING,
-						(i * (BrickH + PADDING)) + PADDING,
-						BrickW, BrickH);
+						ctx.drawImage(oblak, (j * (BrickW + PADDING)) + PADDING,
+						(i * (BrickH + PADDING)) + PADDING, BrickW, BrickH);
+						
 					}
 				}
 			}
@@ -138,7 +141,7 @@ function drawIt(){
 	}
 	
 if(document.getElementById("demo").innerHTML=="start")
-    if (x + dx > 500-r || x + dx < 0+r)
+    if (x + dx > 600-r || x + dx < 0+r)
       dx = -dx;
     if (y + dy < 0+r)
       dy = -dy;
@@ -151,11 +154,11 @@ if(document.getElementById("demo").innerHTML=="start")
     else if (x > paddlex && x < paddlex + paddlew)
       dy = -dy;
     else{
-        clearInterval(IntervalID);
+        window.location.reload();
       }
 }
 
-      if (x + dx > 500 -r|| x + dx < 0 +r){
+      if (x + dx > 600 -r|| x + dx < 0 +r){
         dx = -dx;
       }
       if (y + dy > 500 -r|| y + dy < 0 +r){
@@ -186,6 +189,7 @@ if(document.getElementById("demo").innerHTML=="start")
         clearInterval(draw);
         tocke = 0;
 			}
+		
       x += dx;
       y += dy;
       
@@ -200,6 +204,12 @@ if(document.getElementById("demo").innerHTML=="start")
     
 
   function rect(x,y,w,h){
+	  if(x<0){
+		  x=0;
+	  }
+	  if(x+w>WIDTH){
+		  x=WIDTH-paddlew;
+	  }
     ctx.beginPath();
     ctx.rect(x,y,w,h);
     ctx.closePath();
@@ -209,5 +219,5 @@ if(document.getElementById("demo").innerHTML=="start")
     timer();
     init_paddle();
     init_mouse();
-		initbricks();
+	initbricks();
 }
